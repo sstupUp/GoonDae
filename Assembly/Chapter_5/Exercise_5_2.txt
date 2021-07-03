@@ -1,0 +1,8 @@
+
+Q: Fully explain the differences between static vairables and automatic variables
+
+A: static variables
+   => static variables are used until the program terminates
+
+   automatic variables
+   => They are stored in the stack or the registers and they last as long as their block runs

@@ -1,0 +1,6 @@
+
+Q: What is the difference between lsr and asr?
+
+A: 'lsr' discards the least significants bits and fills the most significant bits with 0
+
+   'asr' fills the most significant bits with the least significant bits

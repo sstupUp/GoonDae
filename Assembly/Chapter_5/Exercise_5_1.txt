@@ -1,0 +1,4 @@
+
+Q: What does it mean for a register to be volatile? Which ARM registers are considered volatile according to the ARM function calling convention?
+
+A: A volatile register == A register that can be used freely(r0 ~ r3, and r12)

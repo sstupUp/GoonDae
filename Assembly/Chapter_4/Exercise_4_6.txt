@@ -1,0 +1,10 @@
+
+Q: Assuming that a is stored in register r0 and b is stored in register r1, show the ARM assembly code that is equivalent to the following C code.
+	    if ( a & 1 )
+  	     a = -a;
+  	    else
+  	     b = b+7;
+
+A: ands r3, r0, #1
+   mvneq r0, r0
+   addne r1, r1, #7

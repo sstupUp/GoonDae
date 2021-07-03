@@ -1,0 +1,14 @@
+
+Q: In ARM assembly language, write a function that is equivalent to the following C function.
+	int max(int a, int b)
+	{
+	  if( a > b )
+ 	    return a;
+
+	  return b;
+	}
+
+A:
+  max:	cmp	r0, r1
+  	ldrlt 	r0, r1
+	mov 	pc, lr  

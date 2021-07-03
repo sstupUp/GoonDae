@@ -1,0 +1,16 @@
+
+Q: Without using the mul instruction, give the instructions to multiply r3 by the following constants, leaving the result in r0. You may also use r1 and r2 to hold temporary results, and you do not need to preserve the original contents of r3.
+(a) 10
+(b) 100
+(c) 575
+(d) 123
+
+A: (a)		mov r1, #1
+      loop:
+		cmp r1, #5
+		bgt endloop
+		add r2, r3, r3
+		add r1, r1, #1
+		b   loop
+      endloop: 	lsl r0, r2, #1
+      

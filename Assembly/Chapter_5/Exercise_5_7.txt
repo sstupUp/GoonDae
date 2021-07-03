@@ -1,0 +1,18 @@
+
+Q: Write a complete ARM function to shift a 64-bit value left by any given amount between 0 and 63 bits. The function should expect its arguments to be in registers r0, r1, and r2. The lower 32 bits of the value are passed in r0, the upper 32 bits of the value are passed in r1, and the shift amount is passed in r2.
+
+A:
+	shiftfunc:	stmfd sp!, {r4, r5}
+			ldr   r3, #0
+			ldr r4, #0x8000
+	loop:		cmp r3, r2
+			beq done
+			and r5, r4, r0
+			lsr r5, r5, #31
+			lsl r0, r0, #1
+			lsl r1, r1, #1
+			add r1, r1, r5
+			add r3, r3, #1
+			b   loop
+	done:		ldmfd sp!, {r4, r5}
+			mov pc, lr

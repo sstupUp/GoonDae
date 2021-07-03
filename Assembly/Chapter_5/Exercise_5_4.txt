@@ -1,0 +1,4 @@
+
+Q: What are the two places where an automatic variable can be stored?
+
+A: stack and registers

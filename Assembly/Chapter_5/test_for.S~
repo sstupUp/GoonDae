@@ -1,0 +1,22 @@
+	.data
+hi:	.asciz "Hi\n"
+test:	.asciz "%d\n"
+	.text
+	.globl main
+main:
+	mov r4, #99
+	stmfd sp!, {r4, lr}
+	mov r0, r4
+	bl printf
+	ldr r0, =hi
+	mov r4, #0
+loop:	bl printf
+	add r4, r4, #1
+	cmp r4, #10
+	ldrlt r0, =hi
+	blt loop
+	ldmfd sp!, {r4, lr}
+	mov r0, r4
+	bl printf
+	mov r0, #0
+	mov pc, lr

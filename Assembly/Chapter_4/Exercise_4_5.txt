@@ -1,0 +1,12 @@
+
+Q: Given the following variable definitions:
+     num1: .word x
+     num2: .word y
+where you do not know the values of x and y, write a short sequence of ARM assembly instructions to load the two numbers, compare them, and move the largest number into register r0.
+
+A: ldr r0, =num1
+   ldr r1, =num2
+   ldr r0, [r0]
+   ldr r1, [r1]
+   cmp r0, r1
+   movge r0, r1

@@ -1,0 +1,27 @@
+
+Q: Assume that r0 holds the least significant 32 bits of a 64-bit integer a, and r1 holds the most significant 32 bits of a. Likewise, r2 holds the least significant 32 bits of a 64-bit integer b, and r3 holds the most significant 32 bits of b. Show the shortest instruction sequences necessary to:
+(a) compare a to b, setting the CPSR flags,
+(b) shift a left by one bit, storing the result in b,
+(c) add b to a, and
+(d) subtract b from a.
+
+A: (a)	     cmps   r1, r3
+   	     cmpeqs r0, r2
+
+   (b)	     and r4, r0, 0x80000000
+   	     lsl r2, r0, #1
+	     lsr r4, r4, #31
+	     lsl r3, r1, #1
+	     add r3, r3, r4
+
+   (c) 	     adds r4, r0, r2
+   	     mrs  r5, CPSR
+	     lsr  r5, r5, #29
+	     add  r6, r3, r1
+	     adds r5, r5, r6
+
+   (d)	     subs  r0, r0, r2
+   	     submi r1, r1, #1
+	     subs  r1, r1, r3
+	     mvn   r0, r0
+	     sub   r0, r0, #1

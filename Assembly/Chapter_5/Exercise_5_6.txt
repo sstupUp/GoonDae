@@ -1,0 +1,25 @@
+
+// Not Done
+
+
+Q: Convert the following C program to ARM assembly, using a post-test loop:
+  int main()
+  {
+   for(i=0;i<10;i++)
+    printf("Hi!\n");
+  return 0;
+  }
+
+A:	.data
+  hi:	.asciz "Hi\n"
+
+  	.text
+	.globl main
+  main:	ldr r0, =hi
+  	ldr r4, #0
+  loop:	bl printf
+	add r4, r4, #1
+	cmp r4, #10
+	blt loop
+	ldr r0, #0
+	mov pc, lr

@@ -1,0 +1,14 @@
+
+Q: Write the ARM assembly code to load the numbers stored in num1 and num2, add them together, and store the result in numsum. Use only r0 and r1.
+
+A: 	     .bss
+  numsum:    .word
+  num1:	     .word
+  num2:	     .word
+
+  	     .text
+  main:	     ldr r0, =num1
+  	     ldr r1, =num2
+	     add r0, r0, r1
+	     str r0, =numsum
+	     

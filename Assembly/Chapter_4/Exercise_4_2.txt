@@ -1,0 +1,12 @@
+
+Q: What will r0 and r1 contain after each of the following instructions? Give your answers in base 10.
+
+A: mov r0, #1	       @ r0 == 1
+   mov r1, #0x20       @ r1 == 32
+   orr r1, r1, r0      @ r1 = r1 v r0
+   lsl r1, #0x2	       @ r1 = r1 * 4
+   orr r1, r1, r0      @ r1 = r1 v r0
+   eor r0, r0, r1      @ r0 = r0 x+ r1 (exclusive or)
+   lsr r1, r0, #3      @ r1 = r0 >> 3
+
+       	       	       r0 == 132, r1 == 16

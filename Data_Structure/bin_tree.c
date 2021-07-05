@@ -18,9 +18,10 @@ NODE* create_Node(void);
 void init_Node(NODE*, int);
 
 int is_there(int);
+NODE* FindMin(NODE*);
 
 void add_Node(NODE*);
-void delete_Node(int);
+NODE* delete_Node(NODE*, int);
 
 void print_Node(NODE*);
 
@@ -55,6 +56,16 @@ int is_there(int target)
   return 0;
 }
 
+NODE* FindMin(NODE* n)
+{
+  NODE* trav = n;
+
+  while(trav->left != NULL)
+    trav = trav->left;
+
+  return trav;
+}
+
 // add a node to the global root
 void add_Node(NODE* n)
 {
@@ -79,9 +90,41 @@ void add_Node(NODE* n)
 }
 
 // find the node that holds the parameter and delete it
-void delete_Node(int target)
+NODE* delete_Node(NODE* n, int target)
 {
-  
+  if(n == NULL)
+    return n;
+  else if(target < n->value)
+    n->left = delete_Node(n->left, target);
+  else if(target > n->value)
+    n->right = delete_Node(n->right, target);
+  else
+    {
+      if(n->left == NULL && n->right == NULL)
+	{
+	  free(n);
+	  n = NULL;
+	}
+      else if(n->left == NULL)
+	{
+	  NODE* tmp = n;
+	  n = n->right;
+	  free(tmp);
+	}
+      else if(n->right == NULL)
+	{
+	  NODE* tmp = n;
+	  n = n->left;
+	  free(tmp);
+	}
+      else
+	{
+	  NODE* tmp = FindMin(n->right);
+	  n->value = tmp->value;
+	  n->right = delete_Node(n->right, tmp->value);
+	}
+    }
+  return n;
 }
 
 // ascending order
@@ -116,7 +159,7 @@ int main(void)
   init_Node(n3, 15);
   init_Node(n4, 2);
   init_Node(n5, 7);
-  init_Node(n6, 5);
+  init_Node(n6, 21);
   
   add_Node(n2);
   add_Node(n3);
@@ -127,6 +170,13 @@ int main(void)
   printf("\n");
 
   add_Node(n6);
+
+  print_Tree(root);
+  printf("\n");
+
+  delete_Node(root, 10);
+  print_Tree(root);
+  printf("\n");
   
   return 0;
 }
